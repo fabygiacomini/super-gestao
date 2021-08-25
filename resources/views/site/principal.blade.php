@@ -30,7 +30,7 @@
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.<p>
                 {{-- diferente do @include, podemos passar parâmetros para o componente na forma de array associativo --}}
-                @component('site.layouts._components.form_contato', ['classe' => 'borda-branca']) {{-- recuperamos esses valores acessando a chave como variável --}}
+                @component('site.layouts._components.form_contato', ['classe' => 'borda-branca', 'motivo_contatos' => $motivo_contatos]) {{-- recuperamos esses valores acessando a chave como variável --}}
                 @endcomponent
             </div>
         </div>

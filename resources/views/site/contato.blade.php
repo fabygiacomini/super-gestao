@@ -1,6 +1,6 @@
 @extends('site.layouts.basico')
 
-@section('titulo', 'Contato')
+@section('titulo', $titulo)
 
 @section('conteudo')
 
@@ -11,7 +11,7 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                @component('site.layouts._components.form_contato', ['classe' => 'borda-preta'])
+                @component('site.layouts._components.form_contato', ['classe' => 'borda-preta', 'motivo_contatos' => $motivo_contatos])
                     {{-- uma das formas de passar valores para o componente é escrevendo dentro do @component --}}
                     <p>A nossa equipe analisará a sua mensgem e retornaremos o mais brevemente possível</p>
                     <p>Nosso tempo médio de resposta é de 48 horas.</p>
