@@ -17,7 +17,12 @@ class AutenticacaoMiddleware
      */
     public function handle(Request $request, Closure $next, string $metodoAutenticacao)
     {
-        return Response('Acesso negado!');
-//        return $next($request);
+        session_start();
+        if (isset($_SESSION['email']) && !empty($_SESSION)) {
+            return $next($request);
+        } else {
+            // não estando autenticado no sistema, volta à tela de login e mostra mensagem para realizar login
+            return redirect()->route('site.login', ['erro' => 2]);
+        }
     }
 }

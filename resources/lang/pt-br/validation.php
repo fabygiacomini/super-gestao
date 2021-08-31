@@ -34,6 +34,14 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+
+        'usuario' => [
+            'email' => 'O campo usuário (e-mail) é obrigatório',
+        ],
+
+        'senha' => [
+            'required' => 'O campo senha é obrigatório',
+        ],
     ],
 
     /*

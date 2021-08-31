@@ -1,26 +1,27 @@
-<h1>Fornecedor</h1>
+@extends('app.layouts.basico')
 
-@isset($fornecedores)
-    @forelse($fornecedores as $indices => $fornecedor)
+@section('titulo', 'Fornecedor')
 
-        Fornecedor: {{ $fornecedor['nome'] }} <br>
-        Status: {{ $fornecedor['status'] }} <br>
-        CNPJ: {{ $fornecedor['cnpj'] ?? 'Dado não foi preenchido'  }} <br>
-        Telefone: ({{ $fornecedor['ddd'] }}) {{ $fornecedor['telefone'] }} <br>
+@section('conteudo')
+    <div class="conteudo-pagina">
+        <div class="titulo-pagina-2">
+            <p>Fornecedor</p>
+        </div>
 
-        @if($loop->first)
-            Primeira iteração do loop
-        @endif
+        @include('app.layouts._partials.appmenu')
 
-        @if($loop->last)
-            Última iteração do loop <br>
-            Total de registros: {{ $loop->count }}
-        @endisset
+        <div class="informacao-pagina">
+            <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                <form method="post" action="{{ route('app.fornecedor.listar') }}">
+                    @csrf
+                    <input type="text" name="nome" placeholder="Nome" class="borda-preta">
+                    <input type="text" name="site" placeholder="Site" class="borda-preta">
+                    <input type="text" name="uf" placeholder="UF" class="borda-preta">
+                    <input type="text" name="email" placeholder="E-mail" class="borda-preta">
+                    <button type="submit" class="borda-preta">Pesquisar</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <hr>
-    @empty
-        Não existem fornecedores cadastrados.
-    @endforelse
-@endisset
-
-
+@endsection
