@@ -30,13 +30,15 @@
                                 <td>{{ $fornecedor->site }}</td>
                                 <td>{{ $fornecedor->uf }}</td>
                                 <td>{{ $fornecedor->email }}</td>
-                                <td>Excluir</td>
-                                <td>Editar</td>
+                                <td><a href="{{ route('app.fornecedor.excluir', $fornecedor->id) }}">Excluir</a></td>
+                                <td><a href="{{ route('app.fornecedor.editar', $fornecedor->id) }}">Editar</a></td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
+                {{-- paginação dos registros --}}
+                {{ $fornecedores->appends($request)->links('pagination::bootstrap-4') }}
+                {{-- o parâmetro appends mantém a paginação com os filtros de busca usado (sem se perder na hr de mudar de página --}}
             </div>
     </div>
     </div>

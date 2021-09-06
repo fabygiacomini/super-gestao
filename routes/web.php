@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\SobreNosController;
 use App\Http\Controllers\ContatoController;
-use App\Http\Controllers\TesteController;
 use App\Http\Controllers\FornecedorController;
 use \App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
@@ -39,9 +38,14 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function () {
     Route::get('/cliente', [ClienteController::class, 'index'])->name('app.cliente');
     Route::get('/fornecedor', [FornecedorController::class, 'index'])->name('app.fornecedor');
     Route::post('/fornecedor/listar', [FornecedorController::class, 'listar'])->name('app.fornecedor.listar');
+    Route::get('/fornecedor/listar', [FornecedorController::class, 'listar'])->name('app.fornecedor.listar');
     Route::get('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
     Route::post('/fornecedor/adicionar', [FornecedorController::class, 'adicionar'])->name('app.fornecedor.adicionar');
-    Route::get('/produto', [ProdutoController::class, 'index'])->name('app.produto');
+    Route::get('/fornecedor/editar/{id}/{msg?}', [FornecedorController::class, 'editar'])->name('app.fornecedor.editar');
+    Route::get('/fornecedor/excluir/{id}', [FornecedorController::class, 'excluir'])->name('app.fornecedor.excluir');
+
+    // rotas do resource de ProdutoController
+    Route::resource('produto', ProdutoController::class);
 });
 
 //Route::get('/teste/{p1}/{p2}', TesteController::class.'@teste')->name('teste');
