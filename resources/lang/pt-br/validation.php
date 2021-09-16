@@ -18,6 +18,7 @@ return [
     'max' => 'O campo :attribute precisa ter menos caracteres',
     'unique' => 'O :attribute já foi utilizado.',
     'email' => 'O e-mail informado é inválido',
+    'integer' => 'O valor do campo :attribute precisa ser um número inteiro',
 
     /*
     |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ return [
         'senha' => [
             'required' => 'O campo senha é obrigatório',
         ],
+
+        'unidade_id' => [
+            'exists' => 'A unidade de medida informada não existe',
+        ]
     ],
 
     /*
