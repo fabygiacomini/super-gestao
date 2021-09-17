@@ -13,4 +13,10 @@ class Fornecedor extends Model
     protected $fillable = [
         'nome', 'site', 'uf', 'email'
     ];
+
+    // relacionamento 1 (fornecedor) -> N (produtos)
+    public function produtos()
+    {
+        return $this->hasMany(Item::class, 'fornecedor_id', 'id');
+    }
 }

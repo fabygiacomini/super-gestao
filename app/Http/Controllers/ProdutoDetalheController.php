@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemDetalhe;
 use App\Models\ProdutoDetalhe;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
@@ -54,10 +55,10 @@ class ProdutoDetalheController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  ProdutoDetalhe  $produtoDetalhe
+     * @param  ItemDetalhe  $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProdutoDetalhe $produtoDetalhe)
+    public function edit(ItemDetalhe $produtoDetalhe)
     {
         $unidades = Unidade::all();
         return view('app.produto_detalhe.edit', ['produto_detalhe' => $produtoDetalhe, 'unidades' => $unidades]);
@@ -67,10 +68,10 @@ class ProdutoDetalheController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  ProdutoDetalhe $produtoDetalhe
+     * @param  ItemDetalhe $produtoDetalhe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProdutoDetalhe $produtoDetalhe)
+    public function update(Request $request, ItemDetalhe $produtoDetalhe)
     {
         $produtoDetalhe->update($request->all());
         echo 'A atualização foi realizada com sucesso';

@@ -27,7 +27,8 @@ class AdicionarProdutoFormRequest extends FormRequest
             'nome' => 'required|min:3|max:40',
             'descricao' => 'required|min:3|max:2000',
             'peso' => 'required|integer',
-            'unidade_id' => 'exists:unidades,id' // que exista na tabela "unidades", coluna "id"
+            'unidade_id' => 'exists:unidades,id', // que exista na tabela "unidades", coluna "id"
+            'fornecedor_id' => 'exists:fornecedores,id',
         ];
     }
 }

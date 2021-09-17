@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdicionarProdutoFormRequest;
+use App\Models\Fornecedor;
+use App\Models\Item;
 use App\Models\Produto;
-use App\Models\ProdutoDetalhe;
 use App\Models\Unidade;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,10 @@ class ProdutoController extends Controller
      */
     public function index(Request $request)
     {
-        $produtos = Produto::paginate(10);
+        $produtos = Item::with(['produtoDetalhe', 'fornecedor'])->paginate(10); // 'produtoDetalhe' refere-se ap método de relacionamento definido no model Produto (e Item)
+        // o uso do método de relacionamento incita o eager loading ao invés o lazy loading (padrão), trazendo os dados do relacionamento sem precisar explicitamente chamar o método
+        // no momento do uso dos objetos retornados
+
 
 //        Nada disso é necessário quando usamos o hasOne() na Model Produto, indicando o relacionamento com ProdutoDetalhe
 //        foreach ($produtos as $key => $produto) {
@@ -40,7 +44,8 @@ class ProdutoController extends Controller
     public function create()
     {
         $unidades = Unidade::all();
-        return view('app.produto.create', ['produto' => null, 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.create', ['produto' => null, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
     }
 
     /**
@@ -51,17 +56,17 @@ class ProdutoController extends Controller
      */
     public function store(AdicionarProdutoFormRequest $request)
     {
-        Produto::create($request->all());
+        Item::create($request->all());
         return redirect()->route('produto.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Produto  $produto
+     * @param  \App\Models\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function show(Produto $produto)
+    public function show(Item $produto)
     {
         return view('app.produto.show', ['produto' => $produto]);
     }
@@ -69,13 +74,14 @@ class ProdutoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Produto  $produto
+     * @param  \App\Models\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $produto)
+    public function edit(Item $produto)
     {
         $unidades = Unidade::all();
-        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades]);
+        $fornecedores = Fornecedor::all();
+        return view('app.produto.edit', ['produto' => $produto, 'unidades' => $unidades, 'fornecedores' => $fornecedores]);
 //        return view('app.produto.create', ['produto' => $produto, 'unidades' => $unidades]);
     }
 
@@ -83,10 +89,10 @@ class ProdutoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Produto  $produto
+     * @param  \App\Models\Item  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(AdicionarProdutoFormRequest $request, Item $produto)
     {
         // $request->all(); -> payload
         // $produto -> instância do objeto no estado anterior (antes de atualizar / da forma que está no banco)
@@ -97,10 +103,10 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Produto  $produto
+     * @param Item $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
+    public function destroy(Item $produto)
     {
         $produto->delete();
         return redirect()->route('produto.index');

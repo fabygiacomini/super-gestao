@@ -46,7 +46,11 @@ return [
 
         'unidade_id' => [
             'exists' => 'A unidade de medida informada não existe',
-        ]
+        ],
+
+        'fornecedor_id' => [
+            'exists' => 'O fornecedor selecionado não existe',
+        ],
     ],
 
     /*

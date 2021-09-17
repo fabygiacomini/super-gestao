@@ -2,21 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cliente;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ClienteController extends Controller
+class PedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $clientes = Cliente::paginate(10);
-        return view('app.cliente.index', ['clientes' => $clientes, 'request' => $request->all()]);
+        //
     }
 
     /**
@@ -26,7 +23,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        return view('app.cliente.create', ['cliente' => null]);
+        //
     }
 
     /**
@@ -37,17 +34,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        $regras = [
-            'nome' => 'required|min:3|max:40'
-        ];
-
-        $request->validate($regras);
-
-        $cliente = new Cliente();
-        $cliente->nome = $request->get('nome');
-        $cliente->save();
-
-        return redirect()->route('cliente.index');
+        //
     }
 
     /**
@@ -58,7 +45,7 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -69,7 +56,7 @@ class ClienteController extends Controller
      */
     public function edit($id)
     {
-        return view('app.cliente.create', ['cliente' => null]);
+        //
     }
 
     /**
