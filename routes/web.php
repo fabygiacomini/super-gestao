@@ -9,6 +9,7 @@ use \App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoDetalheController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::middleware('autenticacao:padrao')->prefix('/app')->group(function () {
 
     // rotas do resource de ProdutoController
     Route::resource('produto', ProdutoController::class);
+
+    // produto_detalhe
+    Route::resource('produto-detalhe', ProdutoDetalheController::class);
 });
 
 //Route::get('/teste/{p1}/{p2}', TesteController::class.'@teste')->name('teste');
