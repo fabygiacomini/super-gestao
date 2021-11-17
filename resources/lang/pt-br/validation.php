@@ -51,6 +51,14 @@ return [
         'fornecedor_id' => [
             'exists' => 'O fornecedor selecionado não existe',
         ],
+
+        'cliente_id' => [
+            'exists' => 'O cliente informado não existe',
+        ],
+
+        'produto_id' => [
+            'exists' => 'O produto informado não existe',
+        ],
     ],
 
     /*

@@ -26,4 +26,10 @@ class Item extends Model
     {
         return $this->belongsTo(Fornecedor::class);
     }
+
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class, 'pedido_produtos', 'produto_id', 'pedido_id');
+        // temos os dois últimos parâmetros - necessários nesse caso, pois a model tem nome fora do padrão esperado pelo Laravel
+    }
 }
